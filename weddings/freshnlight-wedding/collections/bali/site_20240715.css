@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+
+@font-face {
+  font-family: 'Exmouth';
+  src: url('../../fonts/exmouth.woff2');
+  src: url('../../fonts/exmouth.woff2') format('woff2'),
+       url('../../fonts/exmouth.woff') format('woff'),
+       url('/fonts/exmouth.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bali-icons';
+  src:  url('bali-icons_9uwhi.eot');
+  src:  url('bali-icons_9uwhi.eot#iefix') format('embedded-opentype'),
+    url('bali-icons_9uwhi.woff2') format('woff2'),
+    url('bali-icons_9uwhi.ttf') format('truetype'),
+    url('bali-icons_9uwhi.woff') format('woff'),
+    url('bali-icons_9uwhi.svg#bali-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: #414042;
+  background: #ffffff;
+}
+
+/* Site */
+
+.site {
+  color: #414042;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 20px;
+  line-height: 2.5;
+  letter-spacing: 0.1em;
+  text-transform: none;
+}
+
+/* Menu */
+
+.menu {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #3f5763;
+}
+
+.menu__names {
+  padding: 3px 5px 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.menu__items {
+  color: #3f5763;
+}
+
+.menu__link--rsvp {
+  color: #5ac1a7;
+}
+
+/* Header */
+
+.header {
+  background: url(background-1.jpg) repeat top center;
+  background-size: 100%;
+  background-blend-mode: multiply;
+}
+
+.header__content {
+  margin: 0 auto 50px;
+  padding: 100px 25px;
+  top: 25px;
+  position: relative;
+  width: 80%;
+}
+
+.header__content:before {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  box-sizing: content-box;
+  left: -2px;
+  top: -2px;
+  z-index: 1;
+  background: #ebea6a;
+  background:
+    linear-gradient(135deg, transparent 15px, #ebea6a 0) top left,
+    linear-gradient(225deg, transparent 15px, #ebea6a 0) top right,
+    linear-gradient(315deg, transparent 15px, #ebea6a 0) bottom right,
+    linear-gradient(45deg,  transparent 15px, #ebea6a 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.header__content:after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: #ebea6a;
+  background:
+    linear-gradient(135deg, transparent 14.5px, #fff 0) top left,
+    linear-gradient(225deg, transparent 14.5px, #fff 0) top right,
+    linear-gradient(315deg, transparent 14.5px, #fff 0) bottom right,
+    linear-gradient(45deg,  transparent 14.5px, #fff 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.header__main {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.header__names {
+  margin: 25px 0;
+}
+
+.header__name {
+  display: inline-block;
+}
+
+.header__firstname {
+  color: #3f5763;
+  word-break: break-word;
+}
+
+.header__lastname {
+  font-family: 'Libre Baskerville', serif;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.8em;
+  padding-left: 15px;
+}
+
+.header__delimiter {
+  display: block;
+  margin: 0.5em 0.5em 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  vertical-align: super;
+}
+
+.header__date {
+  font-family: 'Exmouth';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 60px;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 3;
+  color: #3f5763;
+}
+
+.header__rsvp {
+  position: relative;
+  z-index: 3;
+}
+
+.header__button {
+  color: #ffffff;
+  background: #3f5763;
+}
+
+.header__button:hover {
+  color: #ffffff;
+}
+
+/* Footer */
+
+.footer {
+  background: #fff url(background-1.jpg) repeat top center;
+  background-size: 100%;
+  background-blend-mode: multiply;
+  padding: 25px;
+}
+
+.footer__content {
+  margin: 0 auto;
+  padding: 25px;
+  position: relative;
+  width: 80%;
+  max-width: 300px;
+}
+
+.footer__content:before {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  box-sizing: content-box;
+  left: -2px;
+  top: -2px;
+  z-index: 1;
+  background: #ebea6a;
+  background:
+    linear-gradient(135deg, transparent 15px, #ebea6a 0) top left,
+    linear-gradient(225deg, transparent 15px, #ebea6a 0) top right,
+    linear-gradient(315deg, transparent 15px, #ebea6a 0) bottom right,
+    linear-gradient(45deg,  transparent 15px, #ebea6a 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.footer__content:after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: #ebea6a;
+  background:
+    linear-gradient(135deg, transparent 14.5px, #fff 0) top left,
+    linear-gradient(225deg, transparent 14.5px, #fff 0) top right,
+    linear-gradient(315deg, transparent 14.5px, #fff 0) bottom right,
+    linear-gradient(45deg,  transparent 14.5px, #fff 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.footer__logo {
+  content: url(../bali/_.png.webp);
+}
+
+.footer__link {
+  position: relative;
+  z-index: 3;
+}
+
+/* Section */
+
+.sections {
+  padding: 25px;
+}
+
+.section__heading,
+.section__title {
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin: 0 0 30px;
+  color: #3f5763;
+}
+
+.section__title {
+  font-size: 48px;
+}
+
+.section__heading {
+  font-size: 60px;
+}
+
+.section__label {
+  font-family: 'Exmouth', serif;
+  font-size: 60px;
+  line-height: 1.75;
+  margin-bottom: 20px;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  color: #3f5763;
+}
+
+.section__box {
+  padding: 0;
+  border: none;
+}
+
+.section__button {
+  color: #ffffff;
+  background: #3f5763;
+}
+
+.section__input {
+  border: 2px solid #3f5763;
+}
+
+/* Quote */
+
+.section--element-quote .section__text {
+  padding-bottom: 200px;
+  background: url('leaf-1.jpg') no-repeat bottom right;
+}
+
+.section--element-quote .section__text:before,
+.section--element-quote .section__text:after {
+  display: none;
+}
+
+/* Timeline */
+
+.section--element-timeline:before {
+  width: 2px;
+  background: #3f5763;
+}
+
+.section--element-timeline:after {
+  width: 6px;
+  height: 6px;
+  border: 2px solid #3f5763;
+}
+
+/* Place */
+
+.section--element-place .section__content {
+  color: #3f5763;
+}
+
+@media (min-width: 480px) {
+  .header__content {
+    margin: 0 auto 100px;
+    padding: 100px 50px;
+    top: 50px;
+  }
+
+  .header__lastname {
+    font-size: 18px;
+  }
+
+  .header__delimiter {
+    font-size: 40px;
+  }
+
+  .sections {
+    padding: 50px 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sections {
+    padding: 100px 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section--element-quote .section__text {
+    width: 840px;
+    padding: 0 100px 160px;
+  }
+}
+
+/* Variations */
+
+.v2 .header,
+.v2 .footer {
+  background-image: url(background-2.jpg);
+}
+
+.v2 .header__content:before {
+  background: #5ac1a7;
+  background:
+    linear-gradient(135deg, transparent 15px, #5ac1a7 0) top left,
+    linear-gradient(225deg, transparent 15px, #5ac1a7 0) top right,
+    linear-gradient(315deg, transparent 15px, #5ac1a7 0) bottom right,
+    linear-gradient(45deg,  transparent 15px, #5ac1a7 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.v2 .section--element-quote .section__text {
+  background-image: url('leaf-2.jpg');
+}
+
+.v3 .header,
+.v3 .footer {
+  background-image: url(background-3.jpg);
+}
+
+.v3 .header__content:before {
+  background: #5ac1a7;
+  background:
+    linear-gradient(135deg, transparent 15px, #5ac1a7 0) top left,
+    linear-gradient(225deg, transparent 15px, #5ac1a7 0) top right,
+    linear-gradient(315deg, transparent 15px, #5ac1a7 0) bottom right,
+    linear-gradient(45deg,  transparent 15px, #5ac1a7 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+}
+
+.v3 .section--element-quote .section__text {
+  background-image: url('leaf-3.jpg');
+}
+
+/* Simplified */
+
+.is-simple .header,
+.is-simple .header__content:before,
+.is-simple .header__content:after {
+  background: none;
+}
+
+.is-simple .header__content {
+  margin: 0 auto;
+  padding: 100px 50px 0;
+  top: 0;
+}
+
+.is-simple .section--element-quote .section__text {
+  background: none;
+  padding-bottom: 0;
+}
+
+.is-simple .footer,
+.is-simple .footer__content:before,
+.is-simple .footer__content:after {
+  background: none;
+}
+
+/* Header overlay */
+
+.header--overlay,
+.header--overlay .header__firstname,
+.header--overlay .header__date {
+  color: #fff !important;
+}
+
+.header--overlay .header__content:before,
+.header--overlay .header__content:after {
+  background: none !important;
+}
