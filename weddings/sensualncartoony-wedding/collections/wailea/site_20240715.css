@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:500');
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+
+@font-face {
+  font-family: 'wailea-icons';
+  src:  url('wailea-icons_9uwhi.eot');
+  src:  url('wailea-icons_9uwhi.eot#iefix') format('embedded-opentype'),
+    url('wailea-icons_9uwhi.woff2') format('woff2'),
+    url('wailea-icons_9uwhi.ttf') format('truetype'),
+    url('wailea-icons_9uwhi.woff') format('woff'),
+    url('wailea-icons_9uwhi.svg#wailea-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: #293c59;
+  background: #fff;
+}
+
+.and {
+  font-family: 'Cardo', serif;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+}
+
+/* Menu */
+
+.menu {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  line-height: 2.5;
+  text-transform: uppercase;
+  color: #293c59;
+  background: #ffffff;
+}
+
+.menu__names {
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+
+.menu__items {
+  color: #293c59;
+}
+
+.menu__link--rsvp {
+  color: #fff;
+  background: #293c59;
+}
+
+/* Site */
+
+.site {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  line-height: 2.5;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  width: 100%;
+  color: #293c59;
+  background: #fff url("texture-1_20190503.jpg") no-repeat top center;
+  background-size: 100%;
+  background-blend-mode: multiply;
+}
+
+/* Header */
+
+.header__main {
+  font-family: 'Oswald', sans-serif;
+  font-size: 100px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.header__delimiter {
+  font-family: 'Cardo', serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+}
+
+.header__date {
+  font-size: inherit;
+}
+
+.header__button {
+  color: #ffffff;
+  background: #293c59;
+}
+
+/* Sections */
+
+.section__heading,
+.section__title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.section__label {
+  font-family: 'Cardo', serif;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+.section__text {
+  margin-top: 2em;
+}
+
+.section__button {
+  color: #ffffff;
+  background: #293c59;
+}
+
+.section__input {
+  border: 1px solid #293c59;
+}
+
+.section__divider {
+  color: #293c59;
+  background: #293c59;
+}
+
+/* Heading */
+
+.section--element-heading .section__text {
+  margin-top: 2em;
+}
+
+/* Quote */
+
+.section--element-quote .section__text p {
+  margin: 2em 0 1.5em;
+}
+
+/* Timeline + Places */
+
+.section--element-timeline:before {
+  width: 2px;
+  background: #293c59;
+}
+
+.section--element-timeline:after {
+  width: 6px;
+  height: 6px;
+  border: 2px solid #293c59;
+}
+
+@media (min-width: 768px) {
+  .header__content {
+    padding: 100px 25px;
+  }
+
+  .section--element-timeline.section--width-half:before {
+    margin-left: -1px;
+  }
+
+  .section--element-timeline:after {
+    margin-left: -5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__content {
+    padding: 200px 25px;
+  }
+}
+
+/* Variations */
+
+.v2 .site {
+  background-image: url("texture-2_20190503.jpg");
+}
+
+.v3 .site {
+  background-image: url("texture-3_20190503.jpg");
+}
+
+/* Simplified */
+
+.is-simple .site {
+  background-image: none;
+}
+
+.is-simple .header__content {
+  padding: 25px;
+}
+
+/* Header overlay */
+
+.header--overlay,
+.header--overlay .header__delimiter {
+  color: #fff !important;
+}

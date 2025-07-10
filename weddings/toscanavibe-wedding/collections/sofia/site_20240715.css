@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500');
+
+@font-face {
+  font-family: 'sofia-icons';
+  src:  url('sofia-icons.eot?9uwhi');
+  src:  url('sofia-icons.eot?9uwhi#iefix') format('embedded-opentype'),
+    url('sofia-icons.woff2?9uwhi') format('woff2'),
+    url('sofia-icons.ttf?9uwhi') format('truetype'),
+    url('sofia-icons.woff?9uwhi') format('woff'),
+    url('sofia-icons.svg?9uwhi#sofia-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: #926c42;
+  background: #ffffff;
+}
+
+/* Menu */
+
+.menu {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #926c42;
+  background: #ffffff;
+}
+
+.menu__names {
+  font-family: 'Lora', serif;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.menu__and {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+
+.menu__items {
+  color: #926c42;
+  background: #ffffff;
+}
+
+.menu__link--rsvp {
+  border: 1px solid #926c42;
+}
+
+/* Site */
+
+.site {
+  font-family: 'Libre Baskerville', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  width: 100%;
+  color: #926c42;
+  background: #ffffff;
+}
+
+/* Header */
+
+.header {
+  background: url("top-1.jpg") no-repeat top center;
+  background-size: 100%;
+  background-blend-mode: multiply;
+}
+
+.header__main {
+  font-family: 'Lora', serif;
+  font-size: 60px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.header__and {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.header__button {
+  border: 1px solid #926c42;
+}
+
+/* Sections */
+
+.section__heading,
+.section__title {
+  font-family: 'Lora', serif;
+  margin: 0 0 20px;
+}
+
+.section__heading {
+  font-size: 48px;
+}
+
+.section__heading {
+  font-size: 36px;
+}
+
+.section__label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+} 
+
+.section__label {
+  margin: 10px 0;
+}
+
+.section__text {
+  letter-spacing: 0.1em;
+  line-height: 2.5;
+}
+
+.section__box {
+  padding: 0;
+  border: none;
+}
+
+.section__button {
+  color: #926c42;
+  background: transparent;
+  border: 1px solid #926c42;
+}
+
+.section__input {
+  border: 1px solid #926c42;
+}
+
+.section__divider {
+  color: #926c42;
+  background: #926c42;
+}
+
+/* Quote */
+
+.section--element-quote {
+  font-style: italic;
+  line-height: 2;
+  letter-spacing: 0;
+}
+
+.section--element-quote .section__text:before,
+.section--element-quote .section__text:after {
+  background: #926c42;
+}
+
+/* Timeline + Places */
+
+.section--element-timeline {
+  padding-left: 50px;
+  text-align: left;
+}
+
+.section--element-timeline:before {
+  width: 2px;
+  background: #926c42;
+}
+
+.section--element-timeline:after {
+  width: 6px;
+  height: 6px;
+  border: 2px solid #926c42;
+}
+
+.section--element-place .section__content {
+  color: #926c42;
+}
+
+@media (min-width: 480px) {
+  .header__content {
+    padding: 50px 0;
+  }
+}
+
+@media (min-width: 540px) {
+  .header__content {
+    padding: 100px 0 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header__content {
+    padding: 150px 0 50px;
+  }
+
+  .section--element-timeline.section--width-half:before {
+    margin-left: -1px;
+  }
+
+  .section--element-timeline:after {
+    margin-left: -5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header__content {
+    padding: 200px 0 100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header__content {
+    padding: 250px 0 150px;
+  }
+}
+
+/* Variations */
+
+.v2 .header {
+  background-image: url("top-2.jpg");
+}
+
+/* Confetti */
+
+.v3 .header {
+  background-image: url("top-3.png");
+  background-blend-mode: normal;
+}
+
+/* Sparks */
+
+.v4 .header {
+  background-image: url("top-4.png");
+  background-blend-mode: normal;
+}
+
+.v4,
+.v4 .site,
+.v4 .menu,
+.v4 .menu__items,
+.v4 .section__button,
+.v4 .section--element-place .section__content {
+  color: #bd976d;
+}
+
+.v4 .section--element-timeline:before {
+  background-color: #bd976d;
+}
+
+.v4 .header__button,
+.v4 .section__box,
+.v4 .section__button,
+.v4 .section--element-timeline:after {
+  border-color: #bd976d;
+}
+
+.v4,
+.v4 .site,
+.v4 .header__content,
+.v4 .section--element-timeline:after {
+  background-color: #000000;
+}
+
+/* Simplified */
+
+.is-simple .header {
+  background: none;
+}
+
+/* Header overlay */
+
+.header--overlay {
+  color: #fff !important;
+}
+
+.header--overlay .header__button {
+  border-color: #fff !important;
+}
