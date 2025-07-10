@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400');
-@import url('https://fonts.googleapis.com/css?family=Pinyon+Script:400');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap');
 
 body {
   color: #25442f;
@@ -7,7 +6,7 @@ body {
 }
 
 .and {
-  font-family: 'Pinyon Script', cursive;
+  font-family: 'Manrope', sans-serif;
   font-weight: 400;
   font-style: normal;
   text-transform: lowercase;
@@ -15,7 +14,7 @@ body {
 }
 
 .menu__names {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 20px;
   line-height: 30px;
   font-weight: 300;
@@ -26,7 +25,7 @@ body {
 }
 
 .menu {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 500;
   font-size: 13px;
   text-transform: uppercase;
@@ -43,8 +42,13 @@ body {
   color: #bea277;
 }
 
+.icon--menu {
+  content: url(../constanta/icon_1.png);
+  max-width: 40px;
+}
+
 .site {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.5;
@@ -64,12 +68,8 @@ body {
   background-blend-mode: multiply;
 }
 
-.header__content {
-  padding: 200px 0;
-}
-
 .header__main {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 48px;
   line-height: 1.5;
   font-weight: 300;
@@ -83,7 +83,7 @@ body {
 }
 
 .header__delimiter {
-  font-family: 'Pinyon Script', serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 62.5%;
   font-weight: 400;
   text-transform: lowercase;
@@ -110,7 +110,7 @@ body {
 
 .section__heading,
 .section__title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 48px;
   line-height: 1.5;
   font-weight: 300;
