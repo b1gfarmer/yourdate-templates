@@ -47,6 +47,10 @@ body {
   max-width: 40px;
 }
 
+.footer__logo {
+  content: url(../constanta/_.png.webp);
+}
+
 .site {
   font-family: 'Manrope', sans-serif;
   font-weight: 400;
