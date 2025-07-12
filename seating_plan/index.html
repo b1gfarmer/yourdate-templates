@@ -148,6 +148,8 @@
   const guestList = document.getElementById('guestList');
   const addGuestBtn = document.getElementById('addGuestBtn');
 
+  const tableTemplates = new Map(); // id -> элемент стола
+
   let currentTableCharCode = 'F'.charCodeAt(0); // Следующая буква после E
   let guestIdCounter = 1;
 
@@ -155,6 +157,9 @@
     const char = String.fromCharCode(currentTableCharCode);
     const id = 'table' + char;
     const name = 'Стол ' + char;
+
+    // Проверка ДО создания/добавления
+    if ([...itemsContainer.children].some(item => item.dataset.id === id)) return;
 
     const newItem = document.createElement('div');
     newItem.className = 'draggable-item';
@@ -171,9 +176,10 @@
     });
 
     itemsContainer.appendChild(newItem);
-
+    tableTemplates.set(id, div);
     currentTableCharCode++;
   }
+
 
   let zoneCount = 0;
   const zones = [];
@@ -211,6 +217,13 @@
       canvas.removeChild(zone);
       const index = zones.indexOf(zone);
       if (index > -1) zones.splice(index, 1);
+      // Если удалённая зона имела имя "Зона X", и X — буква, уменьшаем zoneCount
+      const zoneName = input.value.trim();
+      const match = zoneName.match(/^Зона\s([A-ZА-Я])$/i);
+      if (match) {
+        zoneCount = Math.min(zoneCount, match[1].toUpperCase().charCodeAt(0) - 'A'.charCodeAt(0));
+      }
+
     };
 
     zone.appendChild(input);
@@ -417,8 +430,15 @@
     if (elem) {
       elem.style.display = '';
     }
+    else {
+      // <-- ВСТАВЬ СЮДА ЭТО:
+      const template = tableTemplates.get(id);
+      if (template) {
+        itemsContainer.appendChild(template);
+        template.style.display = '';
+      }
+    }
   }
-
 </script>
 
 </body>
