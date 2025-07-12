@@ -1,0 +1,198 @@
+/* style.css */
+body {
+  font-family: sans-serif;
+  margin: 10px;
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#canvas {
+  position: relative;
+  flex: 1;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+.zone {
+  position: absolute;
+  border: 1px solid black;
+  padding: 8px;
+  background: #f0f0f0;
+  cursor: grab;
+  user-select: none;
+  min-width: 250px;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.zone input {
+  font-weight: bold;
+  width: 100%;
+  border: none;
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+.zone input:focus {
+  outline: 1px solid #666;
+  background: white;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+#itemsContainer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+.draggable-item {
+  flex: 0 0 auto;
+  padding: 6px 12px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #ddd;
+  user-select: none;
+  cursor: grab;
+  white-space: nowrap;
+}
+
+.draggable-item:active {
+  cursor: grabbing;
+}
+
+.guest-item {
+  margin: 4px 0;
+  padding: 4px 6px;
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  cursor: grab;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.guest-item[data-type="presidium"] {
+  background-color: #ffd;
+}
+
+#guestPanel {
+  width: 220px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+#guestPanel h3 {
+  margin-top: 0;
+}
+
+#addGuestBtn {
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+#guestList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.table-vertical {
+  position: relative;
+  width: 60px;
+  height: 200px;
+  background: #b97a57;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+.seats-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.seat {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #3498db;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.seat.left {
+  left: -24px;
+}
+
+.seat.right {
+  right: -24px;
+}
+
+.seat.pos1 { top: 15%; }  /* смещаем немного вниз, чтобы места были равномерно */
+.seat.pos2 { top: 65%; }
+
+.seat.occupied {
+  background-color: #2ecc71;
+  cursor: default;
+}
+
+.seat .guest-name {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: #222;
+  pointer-events: none;
+  user-select: none;
+}
+
+.seat.left .guest-name {
+  left: -25px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.seat.right .guest-name {
+  right: -25px;
+}
+
+.guest-name-label {
+  margin-right: 6px;
+}
+
+.guest-remove {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+}
