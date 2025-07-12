@@ -113,6 +113,81 @@
     flex: 1;
     overflow-y: auto;
   }
+    /* Стили для стола вертикального */
+  .table-vertical {
+    position: relative;
+    width: 60px;  /* ширина стола */
+    height: 200px; /* высота стола */
+    background: #b97a57; /* коричневый цвет, можно заменить */
+    border-radius: 10px;
+    margin: 10px auto;
+  }
+
+  /* Контейнер для мест гостей слева и справа */
+  .seats-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Точки для посадочных мест */
+  .seat {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #3498db;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Левая сторона стола */
+  .seat.left {
+    left: -24px; /* немного левее стола */
+  }
+
+  /* Правая сторона стола */
+  .seat.right {
+    right: -24px; /* немного правее стола */
+  }
+
+  /* Расположение точек по высоте */
+  .seat.pos1 { top: 10%; }
+  .seat.pos2 { top: 30%; }
+  .seat.pos3 { top: 50%; }
+  .seat.pos4 { top: 70%; }
+  .seat.pos5 { top: 90%; }
+
+  /* Когда гостя сажают на место */
+  .seat.occupied {
+    background-color: #2ecc71; /* зеленый */
+    cursor: default;
+  }
+
+  /* Имя гостя поверх точки */
+  .seat .guest-name {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    color: #222;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Имя гостя слева */
+  .seat.left .guest-name {
+    left: 22px;
+  }
+
+  /* Имя гостя справа */
+  .seat.right .guest-name {
+    right: 22px;
+  }
+
 </style>
 </head>
 <body>
@@ -333,8 +408,35 @@
 
       // Если это стол — создаём новый стол в списке
       if (type === 'table') {
-        generateNextTable();
-      }
+      // Создаем визуальный стол с местами
+      const tableElement = createTableElement(name);
+      tableElement.dataset.id = id;
+      tableElement.dataset.type = type;
+
+      // Добавим обработчики кликов на места для посадки гостей
+      tableElement.querySelectorAll('.seat').forEach(seat => {
+        seat.addEventListener('click', () => {
+          if (seat.classList.contains('occupied')) {
+            alert('Это место уже занято');
+            return;
+          }
+          const guestName = prompt('Введите имя гостя для этого места:');
+          if (!guestName) return;
+          seat.classList.add('occupied');
+
+          // Показываем имя гостя рядом с точкой
+          const guestLabel = document.createElement('div');
+          guestLabel.className = 'guest-name';
+          guestLabel.textContent = guestName;
+          seat.appendChild(guestLabel);
+        });
+      });
+
+      guestsContainer.appendChild(tableElement);
+
+      generateNextTable();
+    }
+
     });
 
     return zone;
@@ -439,6 +541,47 @@
       }
     }
   }
+  function createTableElement(name) {
+  const tableDiv = document.createElement('div');
+  tableDiv.classList.add('table-vertical');
+
+  // Создаем контейнер мест
+  const seatsContainer = document.createElement('div');
+  seatsContainer.classList.add('seats-container');
+
+  // Список позиций для посадочных мест (по высоте)
+  const positions = ['pos1', 'pos2', 'pos3', 'pos4', 'pos5'];
+
+  // Создаем точки слева и справа
+  positions.forEach(posClass => {
+    // Левая точка
+    const leftSeat = document.createElement('div');
+    leftSeat.classList.add('seat', 'left', posClass);
+    leftSeat.title = `Место слева от ${name}`;
+    leftSeat.dataset.side = 'left';
+    seatsContainer.appendChild(leftSeat);
+
+    // Правая точка
+    const rightSeat = document.createElement('div');
+    rightSeat.classList.add('seat', 'right', posClass);
+    rightSeat.title = `Место справа от ${name}`;
+    rightSeat.dataset.side = 'right';
+    seatsContainer.appendChild(rightSeat);
+  });
+
+  tableDiv.appendChild(seatsContainer);
+
+  // Название стола под ним
+  const label = document.createElement('div');
+  label.style.textAlign = 'center';
+  label.style.marginTop = '6px';
+  label.style.fontWeight = 'bold';
+  label.textContent = name;
+  tableDiv.appendChild(label);
+
+  return tableDiv;
+}
+
 </script>
 
 </body>
