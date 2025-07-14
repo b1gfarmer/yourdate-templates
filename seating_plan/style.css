@@ -243,7 +243,6 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  padding-left: 1px;
 }
 
 .seat.occupied:hover {

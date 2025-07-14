@@ -44,20 +44,28 @@ export function openSeatingTemplate(seatingData) {
           color: #2c3e50;
           min-height: 60px;
         }
-        button.export-template-btn {
+        button {
           padding: 10px 20px;
           font-size: 16px;
           cursor: pointer;
-          background-color: #4CAF50;
-          color: white;
           border: none;
           border-radius: 6px;
           transition: background-color 0.2s ease;
-          align-self: center;
-          margin-top: auto;
+          margin-right: 10px;
         }
-        button.export-template-btn:hover {
+        .btn-export {
+          background-color: #4CAF50;
+          color: white;
+        }
+        .btn-export:hover {
           background-color: #45a049;
+        }
+        .btn-preview {
+          background-color: #2196F3;
+          color: white;
+        }
+        .btn-preview:hover {
+          background-color: #1976D2;
         }
       </style>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -66,15 +74,9 @@ export function openSeatingTemplate(seatingData) {
       <h1>Выберите шаблон для экспорта рассадки</h1>
       <div class="template-grid" id="templates-container"></div>
 
-      <script>
+      <script type="module">
         const seatingData = ${JSON.stringify(seatingData)};
         const templates = ${JSON.stringify(templates)};
-
-        // Функции рендера — заглушки, заменишь потом динамическим импортом
-        const renderFunctions = {
-          template1: null,
-          template2: null
-        };
 
         const container = document.getElementById('templates-container');
 
@@ -87,30 +89,63 @@ export function openSeatingTemplate(seatingData) {
           nameDiv.textContent = template.name;
           card.appendChild(nameDiv);
 
-          const btn = document.createElement('button');
-          btn.className = 'export-template-btn';
-          btn.textContent = 'Экспортировать';
-          btn.addEventListener('click', () => {
-            alert('Экспорт пока не работает. Шаблоны будут загружены позже.');
+          const btnExport = document.createElement('button');
+          btnExport.textContent = 'Экспортировать';
+          btnExport.className = 'btn-export';
+          btnExport.addEventListener('click', async () => {
+            try {
+              const module = await import('/templates/' + template.id + '.js');
+              const htmlContent = module.render(seatingData);
+
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = htmlContent;
+              document.body.appendChild(tempDiv);
+
+              const opt = {
+                margin: 0.5,
+                filename: 'guest-seating-plan.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+              };
+
+              await html2pdf().set(opt).from(tempDiv).save();
+              document.body.removeChild(tempDiv);
+            } catch (err) {
+              alert('Ошибка при экспорте: ' + err.message);
+            }
           });
 
-          const previewBtn = document.createElement('button');
-          previewBtn.className = 'export-template-btn';
-          previewBtn.style.backgroundColor = '#2196F3';
-          previewBtn.style.marginLeft = '10px';
-          previewBtn.textContent = 'Посмотреть шаблон';
+          const btnPreview = document.createElement('button');
+          btnPreview.textContent = 'Посмотреть шаблон';
+          btnPreview.className = 'btn-preview';
+          btnPreview.addEventListener('click', async () => {
+            try {
+              const module = await import('/templates/' + template.id + '.js');
+              const htmlContent = module.render(seatingData);
 
-          previewBtn.addEventListener('click', () => {
-            alert('Предпросмотр пока не работает. Шаблоны будут загружены позже.');
+              const previewWindow = window.open('', '_blank', 'width=900,height=700');
+              previewWindow.document.write(\`
+                <!DOCTYPE html>
+                <html lang="ru">
+                <head>
+                  <meta charset="UTF-8" />
+                  <title>Предпросмотр: \${template.name}</title>
+                  <style>body { margin: 20px; font-family: 'Segoe UI', sans-serif; }</style>
+                </head>
+                <body>\${htmlContent}</body>
+                </html>
+              \`);
+              previewWindow.document.close();
+            } catch (err) {
+              alert('Ошибка при просмотре: ' + err.message);
+            }
           });
 
           const btnContainer = document.createElement('div');
           btnContainer.style.display = 'flex';
-          btnContainer.style.justifyContent = 'center';
-          btnContainer.style.marginTop = 'auto';
-
-          btnContainer.appendChild(btn);
-          btnContainer.appendChild(previewBtn);
+          btnContainer.appendChild(btnExport);
+          btnContainer.appendChild(btnPreview);
 
           card.appendChild(btnContainer);
           container.appendChild(card);
