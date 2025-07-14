@@ -1,0 +1,91 @@
+export function render(data) {
+  const tablesHTML = data.map(table => {
+    const guests = table.guests.map(g => `<div>${g}</div>`).join('');
+    return `
+      <div class="table">
+        <h2>${table.name}</h2>
+        <div class="guests">${guests}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+      <meta charset="UTF-8" />
+      <title>План рассадки</title>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+      <style>
+        body {
+          font-family: 'Open Sans', sans-serif;
+          background-color: #fffaf7;
+          padding: 40px;
+          margin: 0;
+        }
+
+        .header {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .header h1 {
+          font-family: 'Playfair Display', serif;
+          font-size: 36px;
+          margin: 20px 0 10px;
+          color: #4b3b30;
+        }
+
+        .header img {
+          max-height: 120px;
+          margin-bottom: 10px;
+        }
+
+        .tables {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 32px;
+          justify-content: center;
+        }
+
+        .table {
+          background-color: #ffffff;
+          border: 1px solid #e4dcd5;
+          border-radius: 16px;
+          padding: 20px 24px;
+          width: 260px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .table h2 {
+          font-size: 22px;
+          font-weight: 600;
+          color: #7d5a50;
+          margin-top: 0;
+          margin-bottom: 12px;
+          text-align: center;
+        }
+
+        .guests {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          font-size: 16px;
+          color: #444;
+          padding-left: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <img src="https://cdn-icons-png.flaticon.com/512/7045/7045795.png" alt="leaves decor">
+        <h1>Добро пожаловать на свадьбу</h1>
+      </div>
+
+      <div class="tables">
+        ${tablesHTML}
+      </div>
+    </body>
+    </html>
+  `;
+}
