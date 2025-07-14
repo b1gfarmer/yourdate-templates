@@ -17,35 +17,32 @@
       color: #4b3b30;
       -webkit-print-color-adjust: exact;
     }
-
     .header {
       text-align: center;
       margin-bottom: 40px;
+      page-break-inside: avoid;
     }
-
     .header img {
-      max-width: 30%;
+      max-height: 250px;
+      object-fit: contain;
       display: flex;
       margin-bottom: 20px;
       filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
     }
-
     .leaf {
       max-width: 100%;
       display: flex;
       justify-content: flex-end;
     }
-
     .header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 56px;
       margin: 0;
       font-weight: 600;
       letter-spacing: 0.04em;
       color: #5a4436;
       margin-top: -40px;
     }
-
     .tables {
       display: flex;
       flex-direction: column;
@@ -53,7 +50,6 @@
       max-width: 500px;
       margin: 0 auto 40px;
     }
-
     .table {
       background: #fff;
       border: 1px solid #e4dcd5;
@@ -62,7 +58,6 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.06);
       page-break-inside: avoid;
     }
-
     .table h2 {
       font-family: 'Playfair Display', serif;
       font-size: 26px;
@@ -73,7 +68,6 @@
       border-bottom: 1px solid #e4dcd5;
       padding-bottom: 8px;
     }
-
     .guests {
       font-size: 18px;
       color: #4b3b30;
@@ -82,22 +76,19 @@
       list-style-type: disc;
       line-height: 1.5;
     }
-
     .guests li {
       margin-bottom: 6px;
     }
-
     .leaves_box {
       max-width: 100%;
       display: flex;
       justify-content: center;
+      page-break-inside: avoid;
     }
-
     .leaves {
       max-width: 20%;
       display: flex;
     }
-
     .leaves_big {
       max-width: 100%;
       margin-top: 80px;
@@ -108,18 +99,46 @@
 <body>
   <div class="header">
     <div class="leaf">
-      <img src="https://dl.dropboxusercontent.com/scl/fi/7kvqm97hczauknuumsmwk/vecteezy_green-palm-leaves-casting-shadows-on-a-bright-transparent_57175785.png?rlkey=gsj2dm07ljmxmxwluosn9g220&st=s8w15bts&dl=0" alt="Декоративные листья" />
+      <img src="/images/vecteezy_green-palm-leaves-casting-shadows-on-a-bright-transparent_57175785.png" alt="Декоративные листья" />
     </div>
-      <h1>ДОБРО ПОЖАЛОВАТЬ НА СВАДЬБУ</h1>
+    <h1>ДОБРО ПОЖАЛОВАТЬ НА СВАДЬБУ</h1>
   </div>
-    <div class="leaves_box">
-      <img class="leaves" src="https://dl.dropboxusercontent.com/scl/fi/gdq90ti8f4hseg33rdb89/vecteezy_monstera-leaves-leaves-with-isolate-on-white-background_12933285.png?rlkey=yuql5nqu9lb1pzw42l1urfxm4&st=jqymxgxu&dl=0" alt="Декоративные листья" />
-    </div>
-  <div class="tables">
-    {{tables}}
-  </div>
+
   <div class="leaves_box">
-    <img class="leaves_big" src="https://dl.dropboxusercontent.com/scl/fi/d656fb97cr0yohstcyx17/vecteezy_green-leaf-vine-illustration_47522270.png?rlkey=5nkeg8k619k8iv1uo5yav4azm&st=32znaxxo&dl=0" alt="Декоративные листья" />
+    <img class="leaves" src="/images/vecteezy_monstera-leaves-leaves-with-isolate-on-white-background_12933285.png" alt="Декоративные листья" />
+  </div>
+
+  <div class="tables">
+    <div class="table presidium">
+      <h2>Президиум</h2>
+      <ul class="guests">
+        <li>Иван Иванов</li>
+        <li>Мария Иванова</li>
+      </ul>
+    </div>
+
+    <div class="table">
+      <h2>Стол 1</h2>
+      <ul class="guests">
+        <li>Алексей Смирнов</li>
+        <li>Ольга Петрова</li>
+        <li>Дмитрий Козлов</li>
+        <li>Елена Соколова</li>
+      </ul>
+    </div>
+
+    <div class="table">
+      <h2>Стол 2</h2>
+      <ul class="guests">
+        <li>Сергей Павлов</li>
+        <li>Наталья Власова</li>
+        <li>Виктория Белова</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="leaves_box">
+    <img class="leaves_big" src="/images/vecteezy_green-leaf-vine-illustration_47522270.png" alt="Декоративные листья" />
   </div>
 </body>
 </html>

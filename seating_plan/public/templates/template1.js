@@ -35,53 +35,61 @@ export function render(data) {
           size: A4 portrait;
           margin: 30mm 20mm 30mm 20mm;
         }
-        body {
-          font-family: 'Open Sans', sans-serif;
-          background-color: #fffaf7;
+
+        html, body {
           padding: 0;
           margin: 0;
+          background: #fffaf7;
           color: #4b3b30;
+          font-family: 'Open Sans', sans-serif;
           -webkit-print-color-adjust: exact;
         }
 
         .header {
           text-align: center;
           margin-bottom: 40px;
-        }
-
-        .header img {
-          max-width: 30%;
-          margin-bottom: 20px;
-          filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+          page-break-inside: avoid;
         }
 
         .leaf {
-          max-width: 100%;
-          display: flex;
-          justify-content: flex-end;
+          text-align: right;
+        }
+
+        .header img {
+          max-height: 250px;
+          display: block;
+          margin: 0 auto 20px;
+          filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
         }
 
         .header h1 {
           font-family: 'Playfair Display', serif;
-          font-size: 36px;
-          margin: 0;
+          font-size: 56px;
+          margin: -40px 0 0;
           font-weight: 600;
           letter-spacing: 0.04em;
           color: #5a4436;
-          margin-top: -40px;
         }
 
-        .presidium {
-          margin: 0 auto 40px;
-          max-width: 500px;
+        .leaves_box {
+          text-align: center;
+          margin: 20px 0;
+          page-break-inside: avoid;
+        }
+
+        .leaves_box img {
+          max-width: 300px;
+          width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
         }
 
         .tables {
           display: flex;
-          flex-wrap: wrap;
-          gap: 32px;
-          justify-content: center;
-          max-width: 90%;
+          flex-direction: column;
+          gap: 30px;
+          max-width: 500px;
           margin: 0 auto 40px;
         }
 
@@ -92,7 +100,6 @@ export function render(data) {
           padding: 20px 24px;
           box-shadow: 0 6px 12px rgba(0,0,0,0.06);
           page-break-inside: avoid;
-          width: 240px;
         }
 
         .table h2 {
@@ -118,48 +125,30 @@ export function render(data) {
         .guests li {
           margin-bottom: 6px;
         }
-
-        .leaves_box {
-          max-width: 100%;
-          display: flex;
-          justify-content: center;
-        }
-
-        .leaves {
-          max-width: 20%;
-          display: flex;
-        }
-
-        .leaves_big {
-          max-width: 100%;
-          margin-top: 80px;
-          display: flex;
-        }
       </style>
     </head>
     <body>
       <div class="header">
         <div class="leaf">
-          <img src="https://dl.dropboxusercontent.com/scl/fi/7kvqm97hczauknuumsmwk/vecteezy_green-palm-leaves-casting-shadows-on-a-bright-transparent_57175785.png?rlkey=gsj2dm07ljmxmxwluosn9g220&st=s8w15bts&dl=0" alt="Листья" />
+          <img src="/images/vecteezy_green-palm-leaves-casting-shadows-on-a-bright-transparent_57175785.png" alt="Листья" />
         </div>
         <h1>ДОБРО ПОЖАЛОВАТЬ НА СВАДЬБУ</h1>
       </div>
 
       <div class="leaves_box">
-        <img class="leaves" src="https://dl.dropboxusercontent.com/scl/fi/gdq90ti8f4hseg33rdb89/vecteezy_monstera-leaves-leaves-with-isolate-on-white-background_12933285.png?rlkey=yuql5nqu9lb1pzw42l1urfxm4&st=jqymxgxu&dl=0" alt="Листья" />
+        <img class="leaves" src="/images/vecteezy_monstera-leaves-leaves-with-isolate-on-white-background_12933285.png" alt="Листья" />
       </div>
 
-      ${presidiumHTML ? `<div class="presidium">${presidiumHTML}</div>` : ''}
+      ${presidiumHTML ? `<div class="tables">${presidiumHTML}</div>` : ''}
 
       <div class="tables">
         ${otherTablesHTML}
       </div>
 
       <div class="leaves_box">
-        <img class="leaves_big" src="https://dl.dropboxusercontent.com/scl/fi/d656fb97cr0yohstcyx17/vecteezy_green-leaf-vine-illustration_47522270.png?rlkey=5nkeg8k619k8iv1uo5yav4azm&st=32znaxxo&dl=0" alt="Листья" />
+        <img class="leaves_big" src="/images/vecteezy_green-leaf-vine-illustration_47522270.png" alt="Листья" />
       </div>
     </body>
     </html>
   `;
 }
-
