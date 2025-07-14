@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Зоны с перетаскиванием гостей</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -21,6 +22,7 @@
     </div>
   </div>
   <div id="canvas"></div>
+  <button id="exportPdfBtn">Экспортировать в PDF</button>
 </div>
 
 <div id="guestPanel">
@@ -28,6 +30,16 @@
   <button id="addGuestBtn">Добавить гостя +</button>
   <div id="guestList">
     <!-- Гости появятся здесь -->
+  </div>
+</div>
+
+<!-- Модальное окно -->
+<div id="guestModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Добавить гостя</h3>
+    <input type="text" id="guestNameInput" placeholder="Введите имя гостя">
+    <button id="confirmAddGuest">Добавить</button>
   </div>
 </div>
 

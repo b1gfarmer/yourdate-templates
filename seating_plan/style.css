@@ -1,12 +1,31 @@
-/* style.css */
+/* === Общие стили === */
 body {
-  font-family: sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
   margin: 10px;
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 20px); /* Учитываем внутренние отступы */
+  overflow: hidden; /* предотвращает лишний скролл */
   box-sizing: border-box;
+  color: #333;
 }
 
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* === Главный контейнер === */
 #main {
   flex: 1;
   display: flex;
@@ -21,36 +40,61 @@ body {
   margin-bottom: 10px;
 }
 
+#itemsContainer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+/* === Полотно === */
 #canvas {
   position: relative;
   flex: 1;
-  border: 1px solid #ccc;
+  border: 1px dashed #bbb;
+  background: white;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+  padding: 8px;
+  margin-bottom: 8px;
   overflow: auto;
 }
 
+/* === Зоны === */
 .zone {
   position: absolute;
-  border: 1px solid black;
-  padding: 8px;
-  background: #f0f0f0;
-  cursor: grab;
-  user-select: none;
+  background: #eaf4ff;
+  border-radius: 12px;
+  padding: 12px;
   min-width: 250px;
   min-height: 100px;
   box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.2s;
+}
+
+.zone:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .zone input {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #ccc;
   width: 100%;
-  border: none;
-  background: transparent;
-  margin-bottom: 5px;
+  box-sizing: border-box;
 }
 
 .zone input:focus {
-  outline: 1px solid #666;
-  background: white;
+  outline: none;
+  border-color: #888;
+  background: #fff;
 }
 
 .close-btn {
@@ -59,62 +103,43 @@ body {
   margin-left: 6px;
 }
 
-#itemsContainer {
+.close-btn_main {
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 12px;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  max-width: 100%;
+  justify-content: start;
+  padding-bottom: 10px;
+  padding-left: 8px;
 }
 
-.draggable-item {
-  flex: 0 0 auto;
-  padding: 6px 12px;
-  border: 1px solid #666;
-  border-radius: 4px;
-  background: #ddd;
-  user-select: none;
-  cursor: grab;
-  white-space: nowrap;
+.close-btn_main:hover {
+  color:red;
 }
 
-.draggable-item:active {
-  cursor: grabbing;
-}
-
-.guest-item {
-  margin: 4px 0;
-  padding: 4px 6px;
-  background: #fff;
-  border: 1px solid #999;
-  border-radius: 3px;
-  cursor: grab;
-  user-select: none;
-  white-space: nowrap;
-}
-
-.guest-item[data-type="presidium"] {
-  background-color: #ffd;
-}
-
+/* === Панель гостей === */
 #guestPanel {
   width: 220px;
   border: 1px solid #ccc;
+  background: #fff;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 #guestPanel h3 {
   margin-top: 0;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 #addGuestBtn {
   margin-bottom: 10px;
-  padding: 6px 12px;
-  cursor: pointer;
 }
 
 #guestList {
@@ -122,13 +147,56 @@ body {
   overflow-y: auto;
 }
 
+/* === Элементы гостей и столов === */
+.guest-item {
+  margin: 4px 0;
+  padding: 6px 10px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  cursor: grab;
+  user-select: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.guest-item[data-type="presidium"] {
+  background-color: #fffbe6;
+}
+
+.draggable-item {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  user-select: none;
+  cursor: grab;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.draggable-item:active {
+  cursor: grabbing;
+}
+
+.draggable-item:hover {
+  background: #f5f5f5;
+}
+
+/* === Столы и места === */
 .table-vertical {
   position: relative;
   width: 60px;
-  height: 200px;
-  background: #b97a57;
+  height: 160px;
+  background: #8d6e63;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 12px auto;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
 }
 
 .seats-container {
@@ -139,13 +207,14 @@ body {
 
 .seat {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: #3498db;
   border-radius: 50%;
   border: 2px solid white;
-  cursor: pointer;
+  cursor: grab;
   transition: background-color 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .seat.left {
@@ -156,12 +225,35 @@ body {
   right: -24px;
 }
 
-.seat.pos1 { top: 15%; }  /* смещаем немного вниз, чтобы места были равномерно */
+.seat.pos1 { top: 15%; }
 .seat.pos2 { top: 65%; }
 
 .seat.occupied {
   background-color: #2ecc71;
   cursor: default;
+}
+
+.seat.occupied::after {
+  content: "✔";
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  padding-left: 1px;
+}
+
+.seat.occupied:hover {
+  background-color: #e74c3c; /* красный при наведении */
+  cursor: pointer;
+}
+
+.seat.occupied:hover::after {
+  content: "✖";
+  color: white;
 }
 
 .seat .guest-name {
@@ -196,3 +288,63 @@ body {
   font-weight: bold;
   user-select: none;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  max-width: 300px;
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.modal-content button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.close-modal {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+

@@ -35,8 +35,8 @@ export function createZone(name, x, y) {
   input.title = 'Переименовать зону';
 
   const closeBtn = document.createElement('span');
-  closeBtn.textContent = '✖';
-  closeBtn.className = 'close-btn';
+  closeBtn.textContent = 'Удалить зону';
+  closeBtn.className = 'close-btn_main';
   closeBtn.title = 'Удалить зону';
   closeBtn.onclick = () => deleteZone(zone, input.value);
 

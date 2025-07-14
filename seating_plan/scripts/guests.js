@@ -7,14 +7,42 @@ const addGuestBtn = document.getElementById('addGuestBtn');
 const addedItems = new Set();
 
 export function initGuests() {
-  addGuestBtn.addEventListener('click', () => {
-    const guestName = prompt('Введите имя гостя:', 'Гость ' + guestIdCounter);
+  const modal = document.getElementById('guestModal');
+  const input = document.getElementById('guestNameInput');
+  const confirmBtn = document.getElementById('confirmAddGuest');
+  const closeBtn = document.querySelector('.close-modal');
+
+  function openModal() {
+    input.value = '';
+    modal.style.display = 'flex';
+    input.focus();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  function confirmAdd() {
+    const guestName = input.value.trim();
     if (!guestName) return;
     createGuest(guestName);
+    closeModal();
+  }
+
+  addGuestBtn.addEventListener('click', openModal);
+  confirmBtn.addEventListener('click', confirmAdd);
+  closeBtn.addEventListener('click', closeModal);
+
+  // Enter для добавления, Esc для закрытия
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') confirmAdd();
+    if (e.key === 'Escape') closeModal();
   });
 
+  // Примеры по умолчанию
   ['Иван', 'Мария', 'Алексей', 'Ольга'].forEach(createGuest);
 }
+
 
 export function createGuest(name) {
   const id = 'guest' + guestIdCounter++;
