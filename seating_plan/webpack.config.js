@@ -14,7 +14,7 @@ module.exports = {
   devServer: {
     static: './public',
     open: true,
-    port: 8080, // можешь поменять, если нужно
+    port: 8080,
   },
   module: {
     rules: [
@@ -22,7 +22,13 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-      // можно добавить другие loader'ы, если нужно
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
     ],
   },
   plugins: [
@@ -31,7 +37,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'public/templates', to: 'templates' }, // копируем templates в dist/templates
+        { from: 'public/templates', to: 'templates' },
       ],
     }),
   ],

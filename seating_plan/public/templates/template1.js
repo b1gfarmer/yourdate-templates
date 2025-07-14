@@ -1,13 +1,27 @@
 export function render(data) {
-  const tablesHTML = data.map(table => {
-    const guests = table.guests.map(g => `<div>${g}</div>`).join('');
-    return `
-      <div class="table">
-        <h2>${table.name}</h2>
-        <div class="guests">${guests}</div>
-      </div>
-    `;
-  }).join('');
+  const presidiumHTML = data
+    .filter(t => t.type === 'presidium')
+    .map(t => {
+      const guests = t.guests.map(g => `<li>${g}</li>`).join('');
+      return `
+        <div class="table presidium">
+          <h2>${t.name}</h2>
+          <ul class="guests">${guests}</ul>
+        </div>
+      `;
+    }).join('');
+
+  const otherTablesHTML = data
+    .filter(t => t.type !== 'presidium')
+    .map(t => {
+      const guests = t.guests.map(g => `<li>${g}</li>`).join('');
+      return `
+        <div class="table">
+          <h2>${t.name}</h2>
+          <ul class="guests">${guests}</ul>
+        </div>
+      `;
+    }).join('');
 
   return `
     <!DOCTYPE html>
@@ -17,11 +31,17 @@ export function render(data) {
       <title>План рассадки</title>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
       <style>
+        @page {
+          size: A4 portrait;
+          margin: 30mm 20mm 30mm 20mm;
+        }
         body {
           font-family: 'Open Sans', sans-serif;
           background-color: #fffaf7;
-          padding: 40px;
+          padding: 0;
           margin: 0;
+          color: #4b3b30;
+          -webkit-print-color-adjust: exact;
         }
 
         .header {
@@ -29,16 +49,31 @@ export function render(data) {
           margin-bottom: 40px;
         }
 
+        .header img {
+          max-width: 30%;
+          margin-bottom: 20px;
+          filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+        }
+
+        .leaf {
+          max-width: 100%;
+          display: flex;
+          justify-content: flex-end;
+        }
+
         .header h1 {
           font-family: 'Playfair Display', serif;
           font-size: 36px;
-          margin: 20px 0 10px;
-          color: #4b3b30;
+          margin: 0;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: #5a4436;
+          margin-top: -40px;
         }
 
-        .header img {
-          max-height: 120px;
-          margin-bottom: 10px;
+        .presidium {
+          margin: 0 auto 40px;
+          max-width: 500px;
         }
 
         .tables {
@@ -46,46 +81,85 @@ export function render(data) {
           flex-wrap: wrap;
           gap: 32px;
           justify-content: center;
+          max-width: 90%;
+          margin: 0 auto 40px;
         }
 
         .table {
-          background-color: #ffffff;
+          background: #fff;
           border: 1px solid #e4dcd5;
-          border-radius: 16px;
+          border-radius: 14px;
           padding: 20px 24px;
-          width: 260px;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+          box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+          page-break-inside: avoid;
+          width: 240px;
         }
 
         .table h2 {
-          font-size: 22px;
+          font-family: 'Playfair Display', serif;
+          font-size: 26px;
           font-weight: 600;
           color: #7d5a50;
-          margin-top: 0;
-          margin-bottom: 12px;
+          margin: 0 0 16px;
           text-align: center;
+          border-bottom: 1px solid #e4dcd5;
+          padding-bottom: 8px;
         }
 
         .guests {
+          font-size: 18px;
+          color: #4b3b30;
+          padding-left: 12px;
+          margin: 0;
+          list-style-type: disc;
+          line-height: 1.5;
+        }
+
+        .guests li {
+          margin-bottom: 6px;
+        }
+
+        .leaves_box {
+          max-width: 100%;
           display: flex;
-          flex-direction: column;
-          gap: 6px;
-          font-size: 16px;
-          color: #444;
-          padding-left: 10px;
+          justify-content: center;
+        }
+
+        .leaves {
+          max-width: 20%;
+          display: flex;
+        }
+
+        .leaves_big {
+          max-width: 100%;
+          margin-top: 80px;
+          display: flex;
         }
       </style>
     </head>
     <body>
       <div class="header">
-        <img src="https://cdn-icons-png.flaticon.com/512/7045/7045795.png" alt="leaves decor">
-        <h1>Добро пожаловать на свадьбу</h1>
+        <div class="leaf">
+          <img src="https://dl.dropboxusercontent.com/scl/fi/7kvqm97hczauknuumsmwk/vecteezy_green-palm-leaves-casting-shadows-on-a-bright-transparent_57175785.png?rlkey=gsj2dm07ljmxmxwluosn9g220&st=s8w15bts&dl=0" alt="Листья" />
+        </div>
+        <h1>ДОБРО ПОЖАЛОВАТЬ НА СВАДЬБУ</h1>
       </div>
 
+      <div class="leaves_box">
+        <img class="leaves" src="https://dl.dropboxusercontent.com/scl/fi/gdq90ti8f4hseg33rdb89/vecteezy_monstera-leaves-leaves-with-isolate-on-white-background_12933285.png?rlkey=yuql5nqu9lb1pzw42l1urfxm4&st=jqymxgxu&dl=0" alt="Листья" />
+      </div>
+
+      ${presidiumHTML ? `<div class="presidium">${presidiumHTML}</div>` : ''}
+
       <div class="tables">
-        ${tablesHTML}
+        ${otherTablesHTML}
+      </div>
+
+      <div class="leaves_box">
+        <img class="leaves_big" src="https://dl.dropboxusercontent.com/scl/fi/d656fb97cr0yohstcyx17/vecteezy_green-leaf-vine-illustration_47522270.png?rlkey=5nkeg8k619k8iv1uo5yav4azm&st=32znaxxo&dl=0" alt="Листья" />
       </div>
     </body>
     </html>
   `;
 }
+

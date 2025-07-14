@@ -253,6 +253,8 @@ button:hover {
 .seat.occupied:hover::after {
   content: "✖";
   color: white;
+  top: 50%;
+  left: 50%;
 }
 
 .seat .guest-name {
@@ -346,4 +348,3 @@ button:hover {
   font-size: 20px;
   cursor: pointer;
 }
-
