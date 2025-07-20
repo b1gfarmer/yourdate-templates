@@ -3,16 +3,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js',
+    catalog: './src/scripts/exportTemplate.js',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/', // чтобы пути работали корректно
+    publicPath: '/',
   },
   mode: 'development',
   devServer: {
-    static: './public',
+    static: path.resolve(__dirname, 'dist'),  // <- Важно: отдаем dist
     open: true,
     port: 8080,
   },
@@ -26,14 +29,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
-      }
+          loader: 'babel-loader',
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      chunks: ['main'], // чтобы main.bundle.js подключался в index.html
     }),
     new CopyPlugin({
       patterns: [

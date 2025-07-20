@@ -1,7 +1,7 @@
 import { initZones } from './zones.js';
 import { initGuests } from './guests.js';
 import { makeDraggable } from './dragItems.js';
-import { openSeatingTemplate } from './exportTemplate.js';
+import { openCatalog } from './exportTemplate.js';
 
 // Инициализация кнопок и зон
 const addZoneBtn = document.getElementById('addZoneBtn');
@@ -14,11 +14,10 @@ initGuests();
 const itemsContainer = document.getElementById('itemsContainer');
 document.querySelectorAll('.draggable-item').forEach(makeDraggable);
 
-document.getElementById('exportPdfBtn').addEventListener('click', () => {
-  // Здесь нужно получить реальные данные рассадки из твоего состояния
-  const seatingData = getCurrentSeatingData(); // Поменяй на свою функцию/логику
-
-  openSeatingTemplate(seatingData);
+document.getElementById('exportPdfBtn')?.addEventListener('click', () => {
+  const seatingData = getCurrentSeatingData(); // Получаем актуальные данные
+  sessionStorage.setItem('seatingData', JSON.stringify(seatingData)); // Сохраняем
+  window.open('/templates/catalog.html', '_blank'); // Только потом открываем
 });
 
 // Заглушка для примера, замени на реальную логику сбора данных
