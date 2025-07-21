@@ -11,7 +11,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/yourdate-templates/seating_plan/',
+    publicPath: '/',
   },
   mode: 'production',
   devServer: {
