@@ -11,9 +11,9 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/',
+    publicPath: '/yourdate-templates/seating_plan/',
   },
-  mode: 'development',
+  mode: 'production',
   devServer: {
     static: path.resolve(__dirname, 'dist'),  // <- Важно: отдаем dist
     open: true,
@@ -42,6 +42,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: 'public/templates', to: 'templates' },
+        { from: 'public/images', to: 'images' }, // если есть папка с картинками
       ],
     }),
   ],
