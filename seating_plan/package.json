@@ -2,10 +2,13 @@
   "name": "seating_plan",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://b1gfarmer.github.io/yourdate-templates/seating_plan/",
   "scripts": {
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development --open"
+    "dev": "webpack serve --mode development --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist/seating_plan"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "babel-loader": "^10.0.0",
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.100.1",
