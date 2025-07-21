@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     exportBtn.addEventListener('click', async () => {
       try {
-        const module = await import(`./${template.id}.js`);
+        const module = await import(`./templates-export_scripts/${template.id}.js`);
         const html = module.render(seatingData);
 
         console.log('HTML для pdf:', html);
@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }).from(container).save();
 
         container.remove();
+
+        // После удаления экспортного контейнера — перезагружаем страницу
+        window.location.reload();
 
       } catch (err) {
         console.error('Ошибка при экспорте PDF:', err);
