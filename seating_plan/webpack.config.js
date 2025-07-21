@@ -11,7 +11,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/yourdate-templates/seating_plan/',
+    publicPath: '/',
   },
   mode: 'production',
   devServer: {
@@ -36,7 +36,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
       chunks: ['main'], // чтобы main.bundle.js подключался в index.html
     }),
     new CopyPlugin({
