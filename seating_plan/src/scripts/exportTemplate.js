@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         container.style.left = 'auto';
         container.style.top = 'auto';
         container.style.visibility = 'visible';
-        container.style.width = '210mm';
         container.style.height = 'auto';
         container.style.opacity = '1';
         container.style.zIndex = '10000';
