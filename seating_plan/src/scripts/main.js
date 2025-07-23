@@ -14,10 +14,24 @@ initGuests();
 const itemsContainer = document.getElementById('itemsContainer');
 document.querySelectorAll('.draggable-item').forEach(makeDraggable);
 
-document.getElementById('exportPdfBtn')?.addEventListener('click', () => {
-  const seatingData = getCurrentSeatingData(); // Получаем актуальные данные
-  sessionStorage.setItem('seatingData', JSON.stringify(seatingData)); // Сохраняем
-  window.open('/templates/catalog.html', '_blank'); // Только потом открываем
+import html2canvas from 'html2canvas';
+
+document.getElementById('exportPdfBtn')?.addEventListener('click', async () => {
+  const seatingData = getCurrentSeatingData();
+  sessionStorage.setItem('seatingData', JSON.stringify(seatingData));
+
+  const configEl = document.querySelector('#canvas'); // <- замени на нужный селектор
+  if (configEl) {
+    try {
+      const canvas = await html2canvas(configEl, { scale: 2 });
+      const imageData = canvas.toDataURL('image/jpeg', 1.0);
+      sessionStorage.setItem('seatingScreenshot', imageData);
+    } catch (err) {
+      console.error('Не удалось сделать скриншот:', err);
+    }
+  }
+
+  window.open('/templates/catalog.html', '_blank');
 });
 
 // Заглушка для примера, замени на реальную логику сбора данных

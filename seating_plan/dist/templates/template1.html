@@ -15,42 +15,63 @@
       color: #333;
     }
 
+    .container {
+      max-width: 1000px;
+      margin: 0 auto; /* центрирование */
+      padding: 0 20px; /* небольшой отступ по бокам */
+      box-sizing: border-box;
+    }
+
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 48px;
       text-align: center;
       color: #b85780;
-      margin-bottom: 24px;
+      margin-bottom: 40px;
     }
 
-    .template-wrapper {
-      max-width: 800px;
+    .tables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
       margin: 0 auto;
+    }
+
+    .table-card {
       background: #fff;
       border-radius: 20px;
-      padding: 32px;
+      padding: 24px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
-    }
-
-    .zone {
-      margin-bottom: 24px;
-    }
-
-    .zone-title {
-      font-weight: 600;
-      font-size: 18px;
-      margin-bottom: 12px;
-      color: #b85780;
-    }
-
-    .guests {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .guest {
+    .table-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-name {
+      font-weight: 600;
+      font-size: 20px;
+      color: #b85780;
+      margin-bottom: 16px;
+    }
+
+    .guest-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .guest-list li {
       background: #ffe3ec;
+      margin: 6px 0;
       padding: 8px 14px;
       border-radius: 10px;
       font-size: 14px;
@@ -70,41 +91,66 @@
     .back-link:hover {
       opacity: 0.7;
     }
+
+    .presidium-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
-  <h1>Шаблон: Классическая рассадка</h1>
+  <div class="container">
 
-  <div class="template-wrapper">
-    <div class="zone">
-      <div class="zone-title">Президиум</div>
-      <div class="guests">
-        <div class="guest">Жених</div>
-        <div class="guest">Невеста</div>
+    <h1>Шаблон: Классическая рассадка</h1>
+
+      <!-- Президиум отдельно -->
+    <div class="presidium-wrapper">
+      <div class="table-card">
+        <div class="table-name">Президиум</div>
+        <ul class="guest-list">
+          <li>Жених</li>
+          <li>Невеста</li>
+        </ul>
       </div>
     </div>
 
-    <div class="zone">
-      <div class="zone-title">Стол A</div>
-      <div class="guests">
-        <div class="guest">Гость 1</div>
-        <div class="guest">Гость 2</div>
-        <div class="guest">Гость 3</div>
-        <div class="guest">Гость 4</div>
+    <div class="tables-grid">
+
+      <div class="table-card">
+        <div class="table-name">Родственники Жениха</div>
+        <ul class="guest-list">
+          <li>Гость 1</li>
+          <li>Гость 2</li>
+          <li>Гость 3</li>
+          <li>Гость 4</li>
+        </ul>
+      </div>
+
+      <div class="table-card">
+        <div class="table-name">Родственники Невесты</div>
+        <ul class="guest-list">
+          <li>Гость 5</li>
+          <li>Гость 6</li>
+          <li>Гость 7</li>
+          <li>Гость 8</li>
+        </ul>
+      </div>
+
+      <div class="table-card">
+        <div class="table-name">Друзья</div>
+        <ul class="guest-list">
+          <li>Гость 9</li>
+          <li>Гость 10</li>
+          <li>Гость 11</li>
+        </ul>
       </div>
     </div>
 
-    <div class="zone">
-      <div class="zone-title">Стол B</div>
-      <div class="guests">
-        <div class="guest">Гость 5</div>
-        <div class="guest">Гость 6</div>
-        <div class="guest">Гость 7</div>
-        <div class="guest">Гость 8</div>
-      </div>
-    </div>
+    <a class="back-link" href="catalog.html">← Вернуться к каталогу</a>
+
   </div>
-
-  <a class="back-link" href="catalog.html">← Вернуться к каталогу</a>
+  
 </body>
 </html>

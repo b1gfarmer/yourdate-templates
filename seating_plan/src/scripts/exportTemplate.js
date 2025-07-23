@@ -1,4 +1,30 @@
 import * as html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
+function addImageToPDF(pdf, imgData) {
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const imgWidth = img.width;
+      const imgHeight = img.height;
+      const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+      const imgRenderWidth = imgWidth * ratio;
+      const imgRenderHeight = imgHeight * ratio;
+
+      // Центрируем картинку на странице
+      const x = (pageWidth - imgRenderWidth) / 2;
+      const y = (pageHeight - imgRenderHeight) / 2;
+
+      pdf.addImage(imgData, 'JPEG', x, y, imgRenderWidth, imgRenderHeight);
+      resolve();
+    };
+    img.src = imgData;
+  });
+}
 
 export function openCatalog(seatingData) {
   // Сохраняем данные во временное хранилище
@@ -35,42 +61,65 @@ document.addEventListener('DOMContentLoaded', async () => {
     previewBtn.textContent = 'Посмотреть шаблон';
     previewBtn.className = 'btn-preview';
 
+
     exportBtn.addEventListener('click', async () => {
       try {
         const module = await import(`./templates-export_scripts/${template.id}.js`);
         const html = module.render(seatingData);
 
-        console.log('HTML для pdf:', html);
+        // === Создаём контейнер под экспорт ===
+        const exportDiv = document.createElement('div');
+        exportDiv.id = 'pdf-export';
+        exportDiv.style.position = 'fixed';
+        exportDiv.style.top = '0';
+        exportDiv.style.left = '0';
+        exportDiv.style.width = '794px';    // A4 формат в пикселях
+        exportDiv.style.height = '1123px';
+        exportDiv.style.zIndex = '9999';
+        exportDiv.style.background = 'white';
+        exportDiv.style.padding = '40px';
+        exportDiv.style.boxSizing = 'border-box';
+        exportDiv.style.overflow = 'hidden';
+        exportDiv.innerHTML = html;
 
-        container.style.position = 'static';
-        container.style.left = 'auto';
-        container.style.top = 'auto';
-        container.style.visibility = 'visible';
-        container.style.height = 'auto';
-        container.style.opacity = '1';
-        container.style.zIndex = '10000';
-        container.style.background = 'white';
-        container.style.color = 'black';
-        container.style.padding = '10px';
+        document.body.appendChild(exportDiv);
 
-        document.body.appendChild(container);
-
-        container.innerHTML = html;
-
-        // Подождём, чтобы стили успели примениться
+        // Подождём отрисовку
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
-        await html2pdf().set({
-          margin: 10,
-          filename: 'guest-seating-plan.pdf',
-          image: { type: 'jpeg', quality: 1 },
-          html2canvas: { scale: 2 }, // для лучшего качества
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        }).from(container).save();
+        // Генерация PDF
+        const pdf = new jsPDF('portrait', 'pt', 'a4');
 
-        container.remove();
+        const canvas = await html2canvas(exportDiv, { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
-        // После удаления экспортного контейнера — перезагружаем страницу
+        // Добавляем первую страницу — шаблон
+        pdf.addImage(imgData, 'JPEG', 0, 0, 595.28, 841.89); // A4 в pt
+
+        // Вторая страница — скрин конфигуратора
+        const screenshotData = sessionStorage.getItem('seatingScreenshot');
+        if (screenshotData) {
+          pdf.addPage();
+          const img = new Image();
+          img.src = screenshotData;
+
+          await new Promise((resolve) => {
+            img.onload = () => {
+              const ratio = Math.min(595.28 / img.width, 841.89 / img.height);
+              const w = img.width * ratio;
+              const h = img.height * ratio;
+              const x = (595.28 - w) / 2;
+              const y = (841.89 - h) / 2;
+              pdf.addImage(img, 'JPEG', x, y, w, h);
+              resolve();
+            };
+          });
+        }
+
+        pdf.save('guest-seating-plan.pdf');
+
+        // Удаляем временный контейнер
+        document.body.removeChild(exportDiv);
         window.location.reload();
 
       } catch (err) {
