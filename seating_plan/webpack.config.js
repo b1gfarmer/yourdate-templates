@@ -2,8 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const isProd = process.env.NODE_ENV === 'production';
-
 module.exports = {
   entry: {
     main: './src/index.js',
@@ -13,11 +11,11 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: isProd ? '/yourdate-templates/seating_plan/' : '/',
+    publicPath: '/yourdate-templates/seating_plan/',
   },
-  mode: isProd ? 'production' : 'development',
+  mode: 'production',
   devServer: {
-    static: path.resolve(__dirname, 'dist'),
+    static: path.resolve(__dirname, 'dist'),  // <- Важно: отдаем dist
     open: true,
     port: 8080,
   },
@@ -39,18 +37,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      chunks: ['main'],
-      filename: 'index.html',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/catalog.html',
-      chunks: ['catalog'],
-      filename: 'catalog.html',
+      chunks: ['main'], // чтобы main.bundle.js подключался в index.html
     }),
     new CopyPlugin({
       patterns: [
         { from: 'public/templates', to: 'templates' },
-        { from: 'public/images', to: 'images' },
+        { from: 'public/images', to: 'images' }, // если есть папка с картинками
       ],
     }),
   ],
