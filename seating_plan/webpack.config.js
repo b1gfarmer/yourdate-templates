@@ -37,13 +37,20 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      chunks: ['main'], // чтобы main.bundle.js подключался в index.html
+      filename: 'index.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/catalog.html',
+      filename: 'catalog.html',
+      chunks: ['catalog']
     }),
     new CopyPlugin({
       patterns: [
         { from: 'public/templates', to: 'templates' },
-        { from: 'public/images', to: 'images' }, // если есть папка с картинками
+        { from: 'public/images', to: 'images' },
       ],
     }),
   ],
+
 };
